@@ -9,7 +9,7 @@ So, the pool file is recovered from unconsistent state when open file using `Bud
 ## TODO
 - Fill below
 - Parsing argument: use `clap` crate with yaml
-
+- Test PMDK in this repository as well?
 
 ## How to test each Corundum collections
 ---
