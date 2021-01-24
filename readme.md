@@ -11,7 +11,7 @@ So, the pool file is recovered from unconsistent state when open file using `Bud
 - Parsing argument: use `clap` crate with yaml
 - Test PMDK in this repository as well?
 
-## How to test each Corundum collections
+## 1. How to test each Corundum collections
 ---
 ### SimpleKV
 - todo
@@ -19,6 +19,9 @@ So, the pool file is recovered from unconsistent state when open file using `Bud
 ### BTree
 - todo
 
-## How to break consistency of pool file directly
+## 2. How to break consistency of pool file directly
 ---
 - todo
+
+### MEMO
+- Arugment로 1, 2 둘다 가능하게끔?
