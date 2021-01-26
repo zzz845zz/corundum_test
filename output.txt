@@ -1,0 +1,85 @@
+<create & print state>
+[ENV] do recover
+-----------------------
+size: 0
+elements: 
+state: consistent
+-----------------------
+
+
+<put e0>
+[ENV] do recover
+"e0" inserted
+-----------------------
+size: 1
+elements: e0
+state: consistent
+-----------------------
+
+
+<put e1>
+[ENV] do recover
+"e1" inserted
+-----------------------
+size: 2
+elements: e0, e1
+state: consistent
+-----------------------
+
+
+<put e2 (crashed)>
+[ENV] do recover
+[Intended Error] Process crashed
+
+
+<print state (no recovery)>
+[ENV] do not recover
+-----------------------
+size: 3
+elements: e0, e1
+state: inconsistent
+-----------------------
+
+
+<print state (recovery)>
+[ENV] do recover
+-----------------------
+size: 2
+elements: e0, e1
+state: consistent
+-----------------------
+
+
+<put e2>
+[ENV] do recover
+"e2" inserted
+-----------------------
+size: 3
+elements: e0, e1, e2
+state: consistent
+-----------------------
+
+
+<delete 2 (crashed)>
+[ENV] do recover
+[Intended Error] Process crashed
+
+
+<print state (no recovery)>
+[ENV] do not recover
+-----------------------
+size: 2
+elements: e0, e1, e2
+state: inconsistent
+-----------------------
+
+
+<print state (recovery)>
+[ENV] do recover
+-----------------------
+size: 3
+elements: e0, e1, e2
+state: consistent
+-----------------------
+
+

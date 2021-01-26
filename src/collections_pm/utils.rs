@@ -6,7 +6,8 @@ pub fn env_crash(k_crash: &str) {
         .map(|(k_crash, v_crash)| v_crash);
 
     if v_crash.is_some() && v_crash.unwrap()=="1" {
-        eprintln!("[Intended Error] Process crashed");
+        // eprintln!("[Intended Error] Process crashed");  >>로 출력 안됨
+        println!("[Intended Error] Process crashed");
         std::process::exit(0);
     } 
 }
