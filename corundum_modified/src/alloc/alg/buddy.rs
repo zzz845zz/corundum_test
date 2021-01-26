@@ -1353,7 +1353,15 @@ macro_rules! pool {
                             if let Ok(_) = Self::apply_flags(path, flags) {
                                 let res = Self::open_impl(path);
                                 if res.is_ok() {
-                                    Self::recover();
+                                    let env_recover = std::env::vars()
+                                        .find(|(k, v)| k=="recover")
+                                        .map(|(k_recover, v_recover)| v_recover);
+                                    if env_recover.is_some() && env_recover.unwrap()=="0" {
+                                        println!("[ENV] do not recover");
+                                    } else {
+                                        println!("[ENV] do recover");
+                                        Self::recover();
+                                    }
                                 }
                                 res
                             } else {
