@@ -12,6 +12,7 @@ So, the pool file is recovered from unconsistent state when open file using `Bud
   + Detectable execution(3.2 & 5)
   + Durable Queue(3.1 & 4), Log Queue(3.2 & 5)
 - Fill below
+- Test script
 - Parsing argument: use `clap` crate with yaml
 - Test PMDK in this repository as well?
 
