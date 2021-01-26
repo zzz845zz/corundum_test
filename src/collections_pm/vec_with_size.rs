@@ -24,9 +24,9 @@ impl RootObj<P> for vec_with_size {
 impl vec_with_size {
     pub fn put(&self, value: &str) {
         P::transaction(|j| {
-            *self.size.lock(j) += 1;
-            utils::env_crash("crash_put");
             self.elements.lock(j).push(PString::from_str(value, j), j);
+            utils::env_crash("crash_put");
+            *self.size.lock(j) += 1;
         }).unwrap();
     }
 

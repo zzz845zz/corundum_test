@@ -35,8 +35,8 @@ state: consistent
 <print state (no recovery)>
 [ENV] do not recover
 -----------------------
-size: 3
-elements: e0, e1
+size: 2
+elements: e0, e1, e2
 state: inconsistent
 -----------------------
 
