@@ -34,11 +34,11 @@ cargo run vec_with_size file-name burst get 1000       # Get value of vec[0...99
 cargo run vec_with_size file-name burst put 1000       # Put value "0"..."999" into vec
 cargo run vec_with_size file-name burst putget 1000    # burst put 1000 -> burst get 1000
 ```
-## 2. How to break consistency of pool file directly
-### Control operation using environment variable
-- no_recover=1 
-- crash_put=1 (applied only VecWithSize)
-- crash_del=1 (applied only VecWithSize)  
+## 2. How to test recovery of Corundum pool files
+### Control and Test using environment variable
+- `no_recover=1` : Turn off recovery function when opening pool file
+- `crash_put=1` : crash during `put()` operation (Only applies to `VecWithSize`)
+- `crash_del=1`: crash during `del()` operation (Only applies to `VecWithSize`)
 
 ```bash
 # Examples
