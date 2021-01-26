@@ -7,7 +7,10 @@ In `BuddyAlloc` that author provides as default implementing `MemPool` trait, `B
 So, the pool file is recovered from unconsistent state when open file using `BuddyAlloc::open()`.
 
 ## TODO
-- Test recovery of VecWithSize
+- Implement 
+  + Refer to [paper](https://drive.google.com/file/u/1/d/1j9bz4OjnY3iY-LWhQlYwAbmL7F_iZ2wP/view?usp=sharing)
+  + Detectable execution(3.2 & 5)
+  + Durable Queue(3.1 & 4), Log Queue(3.2 & 5)
 - Fill below
 - Parsing argument: use `clap` crate with yaml
 - Test PMDK in this repository as well?
