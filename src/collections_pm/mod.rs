@@ -1,4 +1,4 @@
-
+pub mod utils;
 
 mod simplekv;
 mod btree;
@@ -16,13 +16,15 @@ type P = BuddyAlloc;
 // e.g.
 //                              args[0]      
 //      cargo run vec_with_size file-name state                : print state of pool file
-//      cargo run vec_with_size file-name get 4                : get value of vec[4]
+//      cargo run vec_with_size file-name get {index}                : get value of vec[4]
 //      cargo run vec_with_size file-name put hi               : put value "hi" into vec
+//      cargo run vec_with_size file-name del {index}
 //      cargo run vec_with_size file-name burst get 1000       : Get value of vec[0...999]
 //      cargo run vec_with_size file-name burst put 1000       : Put value "0"..."999" into vec
 //      cargo run vec_with_size file-name burst putget 1000    : burst put 1000 -> burst get 1000
 pub fn operate_vec_with_size(args: StdVec<String>) {
     // println!("{}", args.len());
+    
     if args.len() < 2 {
         println!(
             "usage: cargo run file-name [get index|put value] | [burst get|put|putget count] | [state]",
@@ -41,7 +43,14 @@ pub fn operate_vec_with_size(args: StdVec<String>) {
     }
     // put 
     else if args[1] == String::from("put") && args.len() == 3 {
-        root.put(&*args[2])
+        root.put(&*args[2]);
+        println!("{:?} inserted", &*args[2]);
+        root.print_state();
+    }
+    // delete
+    else if args[1] == String::from("del") && args.len() == 3 {
+        println!("{:?} deleted", root.delete(args[2].parse().unwrap()));
+        root.print_state();
     }
 
     // burst

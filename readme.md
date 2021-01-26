@@ -7,17 +7,12 @@ In `BuddyAlloc` that author provides as default implementing `MemPool` trait, `B
 So, the pool file is recovered from unconsistent state when open file using `BuddyAlloc::open()`.
 
 ## TODO
-- Fix input:`cargo run vec_with_size ./src/test_vec_with_size.pool get 1`
-    + elements: `[hi, wow]`
-    + wrong output: `Some("[hi, wow]")`
-    + correct output: `Some("wow")`
 - Test recovery of VecWithSize
 - Fill below
 - Parsing argument: use `clap` crate with yaml
 - Test PMDK in this repository as well?
 
 ## 1. How to test each Corundum collections
----
 ### SimpleKV
 ```bash
 cargo run kvstore file-name get key1
@@ -40,8 +35,20 @@ cargo run vec_with_size file-name burst put 1000       # Put value "0"..."999" i
 cargo run vec_with_size file-name burst putget 1000    # burst put 1000 -> burst get 1000
 ```
 ## 2. How to break consistency of pool file directly
----
-- todo
+### Control operation using environment variable
+- no_recover=1 
+- crash_put=1 (applied only VecWithSize)
+- crash_del=1 (applied only VecWithSize)  
+
+```bash
+# Examples
+no_recover=1 cargo run vec_with_size ./src/test_vec_with_size.pool state # open pool without recovery and show status
+no_recover=1 cargo run vec_with_size ./src/test_vec_with_size.pool put e0 # open pool without recovery and `put e0`
+no_recover=1 crash_put=1 cargo run vec_with_size ./src/test_vec_with_size.pool put e1 # open pool without recovery, process will be crashed during `put` operation
+crash_del=1 cargo run vec_with_size ./src/test_vec_with_size.pool del e1 # open pool with recovery, process will be crashed during `del` operation
+
+
+```
 
 ### MEMO
 - Arugment로 1, 2 둘다 가능하게끔?
